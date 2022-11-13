@@ -21,9 +21,10 @@ function App() {
       </nav>
       <Routes>
         <Route index element={<IndexMA />}/>
+        {/* <Route index element={<ListarUsuario />}/> */}
         <Route path='usuario/listar' element={<ListarUsuario />}/>
         <Route path='usuario/crear' element={<CrearUsuario />}/>
-        <Route path='usuario/editar' element={<EditarUsuario />}/>
+        <Route path='usuario/:id/edit' element={<EditarUsuario />}/>
         <Route path='tabla/datos' element={<TBDatos />}/>
         <Route path='tabla/resultados' element={<TBResultados />}/>
         <Route path='tabla/detalles' element={<TBDetalles />}/>

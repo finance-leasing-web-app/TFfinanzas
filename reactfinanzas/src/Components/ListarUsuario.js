@@ -2,49 +2,48 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ListUser() {
+export default function ListUsuario() {
 
-    const [users, setUsers] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
     useEffect(() => {
-        getUsers();
+        getUsuarios();
     }, []);
 
-    function getUsers() {
-        axios.get('http://localhost:80/api/users/').then(function(response) {
+    function getUsuarios() {
+        axios.get('http://localhost:80/apiTF/usuarios/').then(function(response) {
             console.log(response.data);
-            setUsers(response.data);
+            setUsuarios(response.data);
         });
     }
 
-    const deleteUser = (id) => {
-        axios.delete(`http://localhost:80/api/user/${id}/delete`).then(function(response){
+    const deleteUsuario = (id) => {
+        axios.delete(`http://localhost:80/apiTF/usuario/${id}/delete`).then(function(response){
             console.log(response.data);
-            getUsers();
+            getUsuarios();
         });
     }
     return (
         <div>
-            <h1>List Users</h1>
+            {/* cambiar */}
+            <h1>Lista de Usuarios</h1>
             <table>
                 <thead>
+                    {/* cambiar */}
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Actions</th>
+                        <th>Nombre</th>
+                        <th>Contraseña</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, key) =>
+                    {usuarios.map((usuario, key) =>
                         <tr key={key}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.mobile}</td>
+                            <td>{usuario.id}</td>
+                            <td>{usuario.nombre}</td>
+                            <td>{usuario.contrasegna}</td>
                             <td>
-                                <Link to={`user/${user.id}/edit`} style={{marginRight: "10px"}}>Edit</Link>
-                                <button onClick={() => deleteUser(user.id)}>Delete</button>
+                                <Link to={`usuario/${usuario.id}/edit`} style={{marginRight: "10px"}}>Editar</Link>
+                                <button onClick={() => deleteUsuario(usuario.id)}>Eliminar</button>
                             </td>
                         </tr>
                     )}

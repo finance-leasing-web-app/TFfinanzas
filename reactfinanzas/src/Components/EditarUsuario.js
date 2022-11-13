@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function EditarUsuario() {
+export default function EditUsuario() {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState([]);
@@ -10,25 +10,25 @@ export default function EditarUsuario() {
     const {id} = useParams();
 
     useEffect(() => {
-        getUser();
+        getUsuario();
     }, []);
 
-    function getUser() {
-        axios.get(`http://localhost:80/api/user/${id}`).then(function(response) {
+    function getUsuario() {
+        axios.get(`http://localhost:80/apiTF/usuario/${id}`).then(function(response) {
             console.log(response.data);
             setInputs(response.data);
         });
     }
 
     const handleChange = (event) => {
-        const name = event.target.name;
+        const nombre = event.target.name;
         const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}));
+        setInputs(values => ({...values, [nombre]: value}));
     }
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.put(`http://localhost:80/api/user/${id}/edit`, inputs).then(function(response){
+        axios.put(`http://localhost:80/apiTF/usuario/${id}/edit`, inputs).then(function(response){
             console.log(response.data);
             navigate('/');
         });
@@ -36,32 +36,24 @@ export default function EditarUsuario() {
     }
     return (
         <div>
-            <h1>Edit user</h1>
+            <h1>Editar usuario</h1>
             <form onSubmit={handleSubmit}>
                 <table cellSpacing="10">
                     <tbody>
                         <tr>
                             <th>
-                                <label>Name: </label>
+                                <label>Nombre: </label>
                             </th>
                             <td>
-                                <input value={inputs.name} type="text" name="name" onChange={handleChange} />
+                                <input value={inputs.nombre} type="text" name="nombre" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                <label>Email: </label>
+                                <label>Contraseña: </label>
                             </th>
                             <td> 
-                                <input value={inputs.email} type="text" name="email" onChange={handleChange} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Mobile: </label>
-                            </th>
-                            <td>
-                                <input value={inputs.mobile} type="text" name="mobile" onChange={handleChange} />
+                                <input value={inputs.contrasegna} type="text" name="contrasegna" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
