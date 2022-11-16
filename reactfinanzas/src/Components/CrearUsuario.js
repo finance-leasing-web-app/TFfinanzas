@@ -47,7 +47,7 @@ const CrearUsuario = () => {
                                 <label>Repita contraseña :</label>
                             </th>
                             <td>
-                                {/* <input type="password" nombre="contrasegna_" onChange={handleChange} /> */}
+                                <input type="password" nombre="contrasegna_" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
