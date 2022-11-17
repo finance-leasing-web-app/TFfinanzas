@@ -7,19 +7,41 @@ const CrearUsuario = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState([]);
+    const [contrasegna, setContrasegna] = useState([]);
+    const [contrasegna_, setContrasegna_] = useState([]);
+
 
     const handleChange = (event) => {
         const nombre = event.target.name;
         const value = event.target.value;
+        if(event.target.name == "contrasegna")
+        {
+            setContrasegna(value);
+        }
+        else if(event.target.name == "contrasegna_")
+        {
+            setContrasegna_(value);
+        }
         setInputs(values => ({...values, [nombre]: value}));
     }
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost:80/apiTF/usuario/crear', inputs).then(function(response){
+        console.log(contrasegna);
+        console.log(contrasegna_);
+
+        if(contrasegna == contrasegna_)
+        {
+            axios.post('http://localhost:80/apiTF/usuario/crear', inputs).then(function(response){
             console.log(response.data);
             navigate('/');
-        });   
+            }); 
+        }
+        else
+        {
+            window.alert("Password does not match!");
+        }
+          
     }
     return (  
         <div>
