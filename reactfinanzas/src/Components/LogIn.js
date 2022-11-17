@@ -17,6 +17,7 @@ const LogIn = () => {
             <div class="screen">
                 <div class="screen__content">
                     <form class="login">
+                        <h1>Inicio de Sesión</h1>
                         <div class="login__field">
                             <i class="login__icon fas fa-user"></i>
                             <input type="text" class="login__input" placeholder="Usuario"></input>
@@ -25,18 +26,18 @@ const LogIn = () => {
                             <i class="login__icon fas fa-lock"></i>
                             <input type="password" class="login__input" placeholder="Contraseña"></input>
                         </div>
+                        <Link to="usuario/listar">
                         <button class="button login__submit">
-                            <Link to="usuario/listar">
                             <span class="button__text">Iniciar Sesión</span>
-                            </Link>
+                            <i class="button__icon fas fa-chevron-right"></i>
+                        </button>
+                        </Link>	
+                        <Link to="usuario/crear">
+                        <button class="button register">
+                            <span class="button__text">Registrarse</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>	
-                        <button class="button register">
-                            <Link to="usuario/crear">
-                            <span class="button__text">Registrarse</span>
-                            </Link>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>			
+                        </Link>		
                     </form>
                     
                 </div>
