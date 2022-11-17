@@ -8,7 +8,7 @@ const CrearUsuario = () => {
 
     const [inputs, setInputs] = useState([]);
     const [contrasegna, setContrasegna] = useState([]);
-    const [contrasegna_, setContrasegna_] = useState([]);
+    const [contrasegna2, setContrasegna2] = useState([]);
 
 
     const handleChange = (event) => {
@@ -16,21 +16,18 @@ const CrearUsuario = () => {
         const value = event.target.value;
         if(event.target.name == "contrasegna")
         {
-            setContrasegna(value);
+            setContrasegna(event.target.value);
         }
-        else if(event.target.name == "contrasegna_")
+        if(event.target.name == "contrasegna_")
         {
-            setContrasegna_(value);
+            setContrasegna2(event.target.value);
         }
         setInputs(values => ({...values, [nombre]: value}));
     }
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(contrasegna);
-        console.log(contrasegna_);
-
-        if(contrasegna == contrasegna_)
+        if(contrasegna == contrasegna2)
         {
             axios.post('http://localhost:80/apiTF/usuario/crear', inputs).then(function(response){
             console.log(response.data);
@@ -60,7 +57,7 @@ const CrearUsuario = () => {
                                 </div>
                                 <div class="login__field">
                                     <i class="login__icon fas fa-lock"></i>
-                                    <input type="password" class="login__input" placeholder="Repetita Contraseña" nombre="contrasegna_" onChange={handleChange}></input>
+                                    <input type="password" class="login__input" placeholder="Repetita Contraseña" name="contrasegna_" onChange={handleChange}></input>
                                 </div>
                                 <button class="button login__submit">
                                     <span class="button__text">Crear Usuario</span>
